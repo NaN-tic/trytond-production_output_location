@@ -32,6 +32,7 @@ class Production:
                     move.to_location = output_location.id
 
     def set_moves(self):
+        super(Production, self).set_moves()
         Move = Pool().get('stock.move')
         if self.warehouse.production_output_location:
             storage_location = self.warehouse.storage_location
