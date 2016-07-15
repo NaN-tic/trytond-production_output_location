@@ -20,4 +20,4 @@ class Location:
             ('type', '=', 'storage'),
             ('parent', 'child_of', [Eval('id')]),
             ],
-        depends=['type', 'active'])
+        depends=['type', 'active', 'id'])
