@@ -24,15 +24,14 @@ class Production:
             ]
 
     def explode_bom(self):
-        changes = super(Production, self).explode_bom()
-        if ('outputs' in changes and self.warehouse and
+        super(Production, self).explode_bom()
+
+        if not self.outputs:
+            return
+        if (self.outputs and self.warehouse and
                 self.warehouse.production_output_location):
-            output_location = self.warehouse.production_output_location
-            for _, output in changes['outputs']['add']:
-                if output['to_location'] != output_location.id:
-                    output['to_location'] = output_location.id
-                    output['to_location.rec_name'] = output_location.rec_name
-        return changes
+            for output in self.outputs:
+                output.to_location = self.warehouse.production_output_location
 
     def set_moves(self):
         Move = Pool().get('stock.move')
