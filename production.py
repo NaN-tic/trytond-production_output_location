@@ -5,9 +5,8 @@ from trytond.pool import Pool, PoolMeta
 __all__ = ['Production']
 
 
-class Production:
+class Production(metaclass=PoolMeta):
     __name__ = 'production'
-    __metaclass__ = PoolMeta
 
     def get_rec_name(self, name):
         name = super(Production, self).get_rec_name(name)

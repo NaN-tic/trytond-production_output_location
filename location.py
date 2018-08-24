@@ -7,9 +7,8 @@ from trytond.pyson import Eval
 __all__ = ['Location']
 
 
-class Location:
+class Location(metaclass=PoolMeta):
     __name__ = 'stock.location'
-    __metaclass__ = PoolMeta
     production_output_location = fields.Many2One('stock.location',
         'Production Output',
         states={
