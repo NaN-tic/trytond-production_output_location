@@ -11,10 +11,9 @@ class Location(metaclass=PoolMeta):
         'Production Output',
         states={
             'invisible': Eval('type') != 'warehouse',
-            'readonly': ~Eval('active'),
             },
         domain=[
             ('type', '=', 'storage'),
             ('parent', 'child_of', [Eval('id')]),
             ],
-        depends=['type', 'active', 'id'])
+        depends=['type', 'id'])
