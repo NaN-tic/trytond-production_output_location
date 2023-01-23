@@ -1,6 +1,7 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from trytond.pool import Pool, PoolMeta
+from trytond.model import fields
 
 
 class Production(metaclass=PoolMeta):
@@ -20,6 +21,7 @@ class Production(metaclass=PoolMeta):
             ('product',) + tuple(clause[1:]),
             ]
 
+    @fields.depends('warehouse')
     def explode_bom(self):
         super(Production, self).explode_bom()
         if self.warehouse and self.warehouse.production_output_location:
