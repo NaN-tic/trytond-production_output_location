@@ -15,5 +15,4 @@ class Location(metaclass=PoolMeta):
         domain=[
             ('type', '=', 'storage'),
             ('parent', 'child_of', [Eval('id')]),
-            ],
-        depends=['type', 'id'])
+            ])
