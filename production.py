@@ -2,6 +2,7 @@
 # copyright notices and license terms.
 from trytond.pool import Pool, PoolMeta
 from trytond.model import fields
+from trytond.transaction import without_check_access
 
 
 class Production(metaclass=PoolMeta):
@@ -41,6 +42,7 @@ class Production(metaclass=PoolMeta):
                     to_write.append(move)
             if to_write:
                 output_location = self.warehouse.production_output_location
-                Move.write(to_write, {
-                        'to_location': output_location.id,
-                         })
+                with without_check_access():
+                    Move.write(to_write, {
+                            'to_location': output_location.id,
+                             })
